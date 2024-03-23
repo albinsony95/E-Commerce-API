@@ -47,7 +47,7 @@ router.get("/:id",(req, res) => {
 router.post("/placeOrder", (req, res) => {
     const { firstName, lastName, country, streetAddress1, city, zipcode, subTotal, shipHandling, Total, products, email, phone } = req.body;
 
-    if (!firstName || !lastName || !country || !streetAddress1 || !city || !zipcode || !subTotal || !shipHandling || !Total || !products || !email || phone) {
+    if (!firstName || !lastName || !country || !streetAddress1 || !city || !zipcode || !subTotal || !shipHandling || !Total || !products || !email || !phone) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 const newOrder = {
@@ -68,6 +68,7 @@ const newOrder = {
     shipHandling : shipHandling,
     Total : Total
 }
+
 const orders = readJson(orderPath);
 orders.push(newOrder);
 fs.writeFileSync(orderPath,JSON.stringify(orders));

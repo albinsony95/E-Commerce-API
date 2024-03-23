@@ -45,9 +45,9 @@ router.get("/:id",(req, res) => {
 })
 
 router.post("/placeOrder", (req, res) => {
-    const { firstName, lastName, country, streetAddress1, city, zipcode, subTotal, shipHandling, Total, products } = req.body;
+    const { firstName, lastName, country, streetAddress1, city, zipcode, subTotal, shipHandling, Total, products, email, phone } = req.body;
 
-    if (!firstName || !lastName || !country || !streetAddress1 || !city || !zipcode || !subTotal || !shipHandling || !Total || !products) {
+    if (!firstName || !lastName || !country || !streetAddress1 || !city || !zipcode || !subTotal || !shipHandling || !Total || !products || !email || phone) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 const newOrder = {
@@ -61,6 +61,8 @@ const newOrder = {
     StreetAddress3 : req.body.StreetAddress3 || "",
     city : city,
     Zipcode : zipcode,
+    email : email,
+    phone : phone,
     products : products,
     subtotal : subTotal,
     shipHandling : shipHandling,
